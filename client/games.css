@@ -1,0 +1,14 @@
+ul#card-list {
+    list-style: none;
+    width: 315px;
+    display: inline-block;
+    margin: auto;
+}
+
+ul#card-list > li {
+    margin: 20px;
+}
+
+ul#card-list ul {
+    margin: 0;
+}
