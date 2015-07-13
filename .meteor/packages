@@ -11,3 +11,7 @@ bootstrap
 iron:router
 http
 bootstrap3:list-groups
+fourseven:scss@2.0.0
+meteoric:ionic
+meteoric:ionicons-sass
+meteoric:ionic-sass

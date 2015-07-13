@@ -1,4 +1,9 @@
 <template name="main">
-	<h1>Dominioneer</h1>
-	{{> yield}}
+  {{#ionBody}}
+    {{> ionNavBar}}
+
+    {{#ionNavView}}
+      {{> yield}}
+    {{/ionNavView}}
+  {{/ionBody}}
 </template>

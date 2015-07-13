@@ -1,8 +1,19 @@
 <template name="index">
-	{{> login}}
+  {{#contentFor "headerButtonLeft"}}
+    {{> ionNavBackButton}}
+  {{/contentFor}}
 
-	{{#if currentUser}}
-		{{> games}}
-	{{/if}}
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Dominioneer</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      {{> login}}
+      {{#if currentUser}} 
+        {{> games}}
+      {{/if}}
+    {{/ionContent}}
+  {{/ionView}}
 </template>
 
