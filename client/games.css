@@ -6,10 +6,11 @@ ul#card-list {
 }
 
 ul#card-list > li {
-  margin: 20px;
+  width: 315px;
+  margin: auto;
 }
 
 ul#card-list ul {
-  margin: 0;
+  margin: 20px 0px 20px 0px;
 }
 

@@ -1,0 +1,4 @@
+#account-ui .navbar > ul {
+  display: inline-block;
+  float: none;
+}
