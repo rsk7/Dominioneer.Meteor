@@ -1,8 +1,9 @@
 <template name="games">
   <div class="text-center">
     <button type="button" class="btn btn-default" id="requestGames">Generate</button>
+    <button type="button" class="btn btn-default" id="requestPermissions">Permissions</button>
   </div>
-
+  {{permissions}}
   <div class="text-center">
     <ul id="card-list" class="text-left">
       {{#each cards}}
