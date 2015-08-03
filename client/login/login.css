@@ -2,3 +2,7 @@
   display: inline-block;
   float: none;
 }
+
+#account-ui {
+	margin-top: 50px;	
+}

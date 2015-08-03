@@ -12,11 +12,51 @@
   {{/contentFor}}
 
   {{#contentFor "headerTitle"}}
-    <h1 class="title">Trending</h1>
+    <h1 class="title">Settings</h1>
   {{/contentFor}}
 
   {{#ionView}}
     {{#ionContent}}
-    	<span>Settings</span>
+      {{> login}} 
+      <div class="card">
+        <div class="item item-divider">
+          I'm a Header in a Card!
+        </div>
+        <div class="item item-text-wrap">
+          This is a basic Card with some text.
+        </div>
+        <div class="item item-divider">
+          I'm a Footer in a Card!
+        </div>
+      </div>
+      {{> cardExample}}
     {{/ionContent}}
-  {{/ionView}}</template>
+  {{/ionView}}
+
+</template>
+
+<template name="cardExample">
+      <div class="list card">
+
+        <a href="#" class="item item-icon-left">
+          <i class="icon ion-home"></i>
+          Enter home address
+        </a>
+
+        <a href="#" class="item item-icon-left">
+          <i class="icon ion-ios-telephone"></i>
+          Enter phone number
+        </a>
+
+        <a href="#" class="item item-icon-left">
+          <i class="icon ion-wifi"></i>
+          Enter wireless password
+        </a>
+
+        <a href="#" class="item item-icon-left">
+          <i class="icon ion-card"></i>
+          Enter card information
+        </a>
+
+      </div>
+</template>

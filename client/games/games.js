@@ -1,18 +1,13 @@
-var api = "http://dominioneer.elasticbeanstalk.com/randgame";
-var fb = "http://graph.facebook.com/";
-
 Template.games.events({
   "click #requestGames": function(event) {
-    Meteor.http.get(api, function(err, res) {
-      if (err) return new Meteor.Error("Dominioneer api call failed");
-      Session.set("game", res.data);
+    Dominioneer.randGame(function(data) {
+      Session.set("game", data);
     });
   },
 
   "click #requestPermissions": function(event) {
-    Meteor.http.get(fb + Meteor.user().profile.userId + "/permissions", function(err, res) {
-      if (err) return new Meteor.Error("Graph api failed");
-      Session.set("permissions", res.data);
+    Facebook.permissions(Meteor.user().profile.userId, function(data) {
+      Session.set("permissions", data);
     });
   }
 });

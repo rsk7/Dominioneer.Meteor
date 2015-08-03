@@ -18,21 +18,22 @@
 
   {{#ionView}}
     {{#ionContent}}
-      <div class="text-center">
-        <button class="button button-balanced" id="requestGames">Generate</button>
-        <button class="button button-energized" id="requestPermissions">Permissions</button>
+      <div class="padded-content">
+        <div class="text-center">
+          <button class="button button-balanced" id="requestGames">Generate</button>
+          <button class="button button-energized" id="requestPermissions">Permissions</button>
+        </div>
+
+        {{permissions}}
+
+        <div class="text-center">
+          <ul id="card-list"  class="text-left">
+            {{#each cards}}
+              {{> card}}
+            {{/each}}
+          </ul>
+        </div>
       </div>
-
-      {{permissions}}
-
-      <div class="text-center">
-        <ul id="card-list"  class="text-left">
-          {{#each cards}}
-            {{> card}}
-          {{/each}}
-        </ul>
-      </div>
-
     {{/ionContent}}
   {{/ionView}}
 

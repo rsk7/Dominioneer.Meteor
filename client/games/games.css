@@ -14,3 +14,7 @@ ul#card-list ul {
   margin: 20px 0px 20px 0px;
 }
 
+.padded-content {
+	padding: 30px;
+}
+

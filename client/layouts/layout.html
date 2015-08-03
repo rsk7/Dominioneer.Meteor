@@ -1,16 +1,21 @@
 <template name="appLayout">
 	{{#ionBody}}
-		{{>ionNavBar}}
+		{{#if currentUser}}
+			{{>ionNavBar class="bar-positive"}}
 
-		{{#ionNavView}}
-			{{> yield}}
-		{{/ionNavView}}
+			{{#ionNavView}}
+				{{> yield}}
+			{{/ionNavView}}
 
-		{{#ionTabs style="ios"}}
-			{{> ionTab title="History" path="history" iconOn="ios-paper" iconOff="ios-paper" }}
-			{{> ionTab title="Unrated" path="unrated" iconOn="checkmark-circled" iconOff="checkmark-circled"}}
-			{{> ionTab title="Settings" path="settings" iconOn="person" iconOff="person"}}
-			{{> ionTab title="Games" path="games" iconOn="ios-bolt" iconOff="ios-bolt"}}
-		{{/ionTabs}}
+			{{#ionTabs style="ios"}}
+				{{> ionTab title="History" path="history" iconOn="ios-paper" iconOff="ios-paper" }}
+				{{> ionTab title="Unrated" path="unrated" iconOn="checkmark-circled" iconOff="checkmark-circled"}}
+				{{> ionTab title="Settings" path="settings" iconOn="person" iconOff="person"}}
+				{{> ionTab title="Games" path="games" iconOn="ios-bolt" iconOff="ios-bolt"}}
+			{{/ionTabs}}
+		{{else}}
+			{{> splash}}
+		{{/if}}
+
 	{{/ionBody}}
 </template>
