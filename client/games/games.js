@@ -1,4 +1,4 @@
-var api = "http://dominioneer.elasticbeanstalk.com/games";
+var api = "http://dominioneer.elasticbeanstalk.com/randgame";
 var fb = "http://graph.facebook.com/";
 
 Template.games.events({

@@ -7,7 +7,11 @@
 meteor-platform
 accounts-facebook
 service-configuration
-bootstrap
 iron:router
 http
 bootstrap3:list-groups
+fourseven:scss@2.0.0
+meteoric:ionic-sass
+meteoric:ionicons-sass
+meteoric:ionic
+bootstrap

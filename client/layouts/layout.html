@@ -1,0 +1,16 @@
+<template name="appLayout">
+	{{#ionBody}}
+		{{>ionNavBar}}
+
+		{{#ionNavView}}
+			{{> yield}}
+		{{/ionNavView}}
+
+		{{#ionTabs style="ios"}}
+			{{> ionTab title="History" path="history" iconOn="ios-paper" iconOff="ios-paper" }}
+			{{> ionTab title="Unrated" path="unrated" iconOn="checkmark-circled" iconOff="checkmark-circled"}}
+			{{> ionTab title="Settings" path="settings" iconOn="person" iconOff="person"}}
+			{{> ionTab title="Games" path="games" iconOn="ios-bolt" iconOff="ios-bolt"}}
+		{{/ionTabs}}
+	{{/ionBody}}
+</template>

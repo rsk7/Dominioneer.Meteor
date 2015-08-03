@@ -1,0 +1,63 @@
+<template name="games">
+
+  {{#contentFor "headerButtonLeft"}}
+    <button class="button button-clear pull-left button-positive" data-ion-modal="search">
+      {{> ionIcon icon='ios-search'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear pull-right button-positive" data-ion-modal="newProduct">
+      {{> ionIcon icon='ios-plus-empty'}}
+    </button>
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Games</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="text-center">
+        <button class="button button-balanced" id="requestGames">Generate</button>
+        <button class="button button-energized" id="requestPermissions">Permissions</button>
+      </div>
+
+      {{permissions}}
+
+      <div class="text-center">
+        <ul id="card-list"  class="text-left">
+          {{#each cards}}
+            {{> card}}
+          {{/each}}
+        </ul>
+      </div>
+
+    {{/ionContent}}
+  {{/ionView}}
+
+</template>
+
+<template name="card">
+  <li>
+    <ul>
+      <li class="list-group-item list-group-item-info">
+        <b>{{name}}</b>
+      </li>
+      <li class="list-group-item">
+        Type
+        {{#each type}}
+            <span class="badge">{{this}}</span>
+        {{/each}}
+      </li>
+      <li class="list-group-item">
+        Cost
+        <span class="badge">{{cost}}</span>
+      </li>
+      <li class="list-group-item">
+        Set
+        <span class="badge">{{set}}</span>
+      </li>
+    </ul>
+  </li>
+</template>
