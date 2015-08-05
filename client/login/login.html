@@ -7,37 +7,26 @@
 </template>
 
 <template name="user_info">
-  <ul class="nav">
-    {{#if currentUser}}
-      {{> user_loggedin}}
-    {{else}}
-      {{> user_loggedout}}
-    {{/if}}
-  </ul>
-</template>
-
-<template name="user_loggedin">
-  {{#if loggingIn}}
-    <li><a>Logging in...</a></li>
+  {{#if currentUser}}
+    {{> user_loggedin}}
   {{else}}
-    <li>
-      <img class="img-rounded" style="height: 32px; margin-top: 4px;" src="{{currentUser.profile.picture}}"/>
-    </li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        {{currentUser.profile.name}}
-        <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-        <li><a>Account Settings</a></li>
-        <li class="divider"></li>
-        <li><a id="logout">Logout</a></li>
-      </ul>
-    </li>
+    {{> user_loggedout}}
   {{/if}}
 </template>
 
+<template name="user_loggedin">
+  <div class="profile card">
+    <div class="item">
+      <img class="profile-pic" src="{{currentUser.profile.picture}}"/>
+      <span class="profile-name">{{currentUser.profile.name}}</span>
+    </div>
+    <a id="logout" class="item button button-block button-dark">
+      Logout
+    </a>
+  </div>
+</template>
+
 <template name="user_loggedout">
-  <button id="facebook-login" class="button button-block button-positive">Login with Facebook</button>
+  <button id="facebook-login" class="button button-positive">Login with Facebook</button>
 </template>
 

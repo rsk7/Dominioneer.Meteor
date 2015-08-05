@@ -1,8 +1,13 @@
-#account-ui .navbar > ul {
-  display: inline-block;
-  float: none;
+.profile-pic {
+	height: 54px;	
+	padding-right: 10px;
+	vertical-align: -16px;
 }
 
-#account-ui {
-	margin-top: 50px;	
+.profile-name {
+	font-size: 24px;
+}
+
+#logout {
+	margin-top: 0px;
 }
