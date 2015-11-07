@@ -13,6 +13,7 @@ var hasSelections = function() {
 };
 
 Template.createGame.onRendered(function() {
+  userFriends.remove({});
   Meteor.call("getFriends", function(err, response) {
     if (err) {
       console.log(err)
@@ -37,9 +38,11 @@ Template.createGame.events({
   "click #create": function(e) {
     var selected = selectedUserIds();
     selected.push(Meteor.user().profile.userId);
+    e.target.innerHTML = "Creating game ...";
     Meteor.call("game", selected, function(err, data) {
       if (err) console.log(err);
-      else console.log(data);
+      else Session.set("createdGame", data);
+      e.target.innerHTML = "Create game";
     });
   }
 });
@@ -67,6 +70,10 @@ Template.createGame.helpers({
     });
 
     return createGameWithString.slice(0, -1);
+  },
+
+  cards: function() {
+    return Session.get("createdGame").cards;
   }
 });
 
