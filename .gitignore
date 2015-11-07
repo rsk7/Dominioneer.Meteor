@@ -1,5 +1,5 @@
 .meteor/local
 .meteor/meteorite
-settings.json
+settings*.json
 *.swp
 

@@ -19,7 +19,20 @@
             <input type="text" placeholder="Find friends">
           </label>
         </div>
+
+        <div class="list">
+          {{#each friends}}
+            {{> friend}}
+          {{/each}}
+        </div>
       </div>
     {{/ionContent}}
   {{/ionView}}
+</template>
+
+<template name="friend">
+  <a class="item item-avatar" href="#">
+    <img src="{{profilePic}}"/>
+    <h2>{{name}}</h2>
+  </a>
 </template>
