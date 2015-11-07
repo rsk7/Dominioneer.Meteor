@@ -1,0 +1,9 @@
+.sidemenu .item {
+  white-space: normal;
+}
+
+.sidemenu .profile-name {
+  margin-top: 10px;
+  display: block;
+  font-size: inherit;
+}

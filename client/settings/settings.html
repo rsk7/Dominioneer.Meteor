@@ -1,16 +1,8 @@
 <template name="settings">
-	{{#contentFor "headerButtonLeft"}}
-    <button class="button button-clear pull-left button-positive" data-ion-modal="search">
-      {{> ionIcon icon='ios-search'}}
-    </button>
+  {{#contentFor "headerButtonLeft"}}
+    {{> sidemenubutton}}
   {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
-    <button class="button button-clear pull-right button-positive" data-ion-modal="newProduct">
-      {{> ionIcon icon='ios-plus-empty'}}
-    </button>
-  {{/contentFor}}
-
+  
   {{#contentFor "headerTitle"}}
     <h1 class="title">Settings</h1>
   {{/contentFor}}
@@ -32,7 +24,6 @@
       {{> cardExample}}
     {{/ionContent}}
   {{/ionView}}
-
 </template>
 
 <template name="cardExample">

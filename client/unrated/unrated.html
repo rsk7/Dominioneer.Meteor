@@ -1,14 +1,6 @@
 <template name="unrated">
-	{{#contentFor "headerButtonLeft"}}
-    <button class="button button-clear pull-left button-positive" data-ion-modal="search">
-      {{> ionIcon icon='ios-search'}}
-    </button>
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
-    <button class="button button-clear pull-right button-positive" data-ion-modal="newProduct">
-      {{> ionIcon icon='ios-plus-empty'}}
-    </button>
+  {{#contentFor "headerButtonLeft"}}
+    {{> sidemenubutton}}
   {{/contentFor}}
 
   {{#contentFor "headerTitle"}}
@@ -20,5 +12,4 @@
     	<span>Unrated</span>
     {{/ionContent}}
   {{/ionView}}
-
 </template>

@@ -1,15 +1,6 @@
 <template name="games">
-
   {{#contentFor "headerButtonLeft"}}
-    <button class="button button-clear pull-left button-positive" data-ion-modal="search">
-      {{> ionIcon icon='ios-search'}}
-    </button>
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
-    <button class="button button-clear pull-right button-positive" data-ion-modal="newProduct">
-      {{> ionIcon icon='ios-plus-empty'}}
-    </button>
+    {{> sidemenubutton}}
   {{/contentFor}}
 
   {{#contentFor "headerTitle"}}
