@@ -1,27 +1,12 @@
-<template name="appLayout">
-	{{#ionBody}}
-		{{#if currentUser}}
-			{{#ionSideMenuContainer}}
-				{{#ionSideMenus}}
-					{{#ionSideMenu}}
-						{{> sidemenu}}
-					{{/ionSideMenu}}
-				{{/ionSideMenus}}
-				{{#ionSideMenuContent}}
-					{{> ionNavBar class="bar-positive"}}
-					{{#ionNavView}}
-						{{> yield}}
-					{{/ionNavView}}
-					{{#ionTabs style="ios"}}
-						{{> ionTab title="Games" path="games" iconOn="ios-bolt" iconOff="ios-bolt"}}
-						{{> ionTab title="Unrated" path="unrated" iconOn="checkmark-circled" iconOff="checkmark-circled"}}
-						{{> ionTab title="History" path="history" iconOn="ios-paper" iconOff="ios-paper" }}
-						{{> ionTab title="Settings" path="settings" iconOn="person" iconOff="person"}}
-					{{/ionTabs}}
-				{{/ionSideMenuContent}}
-			{{/ionSideMenuContainer}}
-		{{else}}
-			{{> splash}}
-		{{/if}}
-	{{/ionBody}}
+<template name="layout">
+  {{#ionBody}}
+    {{#if currentUser}}
+      {{> ionNavBar class="bar-positive"}}
+      {{#ionNavView}}
+        {{> yield}}
+      {{/ionNavView}}
+    {{else}}
+      {{> splash}}
+    {{/if}}
+  {{/ionBody}}
 </template>

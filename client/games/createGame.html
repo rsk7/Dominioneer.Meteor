@@ -1,0 +1,25 @@
+<template name="createGame">
+  {{#contentFor "headerButtonLeft"}}
+    {{> ionNavBackButton path="games"}}
+  {{/contentFor}}
+
+  {{#contentFor "headerTitle"}}
+    <h1 class="title">Games</h1>
+  {{/contentFor}}
+
+  {{#ionView}}
+    {{#ionContent}}
+      <div class="padded-content">
+        <button class="button button-positive button-block" id="create">
+           Create Game
+        </button>
+        <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Find friends">
+          </label>
+        </div>
+      </div>
+    {{/ionContent}}
+  {{/ionView}}
+</template>

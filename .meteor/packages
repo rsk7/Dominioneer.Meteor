@@ -26,5 +26,5 @@ iron:router
 twbs:bootstrap
 tanis:bootstrap-social
 fortawesome:fontawesome
-meteoric:ionic-sass
 meteoric:ionicons-sass
+meteoric:ionic-sass

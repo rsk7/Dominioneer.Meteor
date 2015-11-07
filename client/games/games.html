@@ -10,46 +10,17 @@
   {{#ionView}}
     {{#ionContent}}
       <div class="padded-content">
-        <div class="text-center">
-          <button class="button button-balanced" id="requestGames">Generate</button>
-          <button class="button button-energized" id="requestPermissions">Permissions</button>
-        </div>
+        <a class="button button-outline button-positive button-block" 
+           href="{{pathFor route='randGame'}}"> 
+          Random Game Generator 
+        </a>
 
-        {{permissions}}
-
-        <div class="text-center">
-          <ul id="card-list"  class="text-left">
-            {{#each cards}}
-              {{> card}}
-            {{/each}}
-          </ul>
-        </div>
+        <a class="button button-outline button-positive button-block"
+           href="{{pathFor route='createGame'}}">
+           Create Game
+        </a>
       </div>
     {{/ionContent}}
   {{/ionView}}
-
 </template>
 
-<template name="card">
-  <li>
-    <ul>
-      <li class="list-group-item list-group-item-info">
-        <b>{{name}}</b>
-      </li>
-      <li class="list-group-item">
-        Type
-        {{#each type}}
-            <span class="badge">{{this}}</span>
-        {{/each}}
-      </li>
-      <li class="list-group-item">
-        Cost
-        <span class="badge">{{cost}}</span>
-      </li>
-      <li class="list-group-item">
-        Set
-        <span class="badge">{{set}}</span>
-      </li>
-    </ul>
-  </li>
-</template>
