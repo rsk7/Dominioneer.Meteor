@@ -6,9 +6,13 @@ Meteor.methods({
   },
 
   game: function(userIds) {
+    console.log(Fb.accessToken());
     return HTTP.get(url + "games", {
       params: {
-        players: userIds.join(',')
+        players: userIds.join(','),
+        headers: {
+          "Authorization": "Bearer " + Fb.accessToken()
+        }
       }
     }).data;
   }

@@ -14,7 +14,7 @@ Meteor.startup(function() {
 Accounts.onCreateUser(function(options, user) {
     if(options.profile) {
         options.profile.userId = user.services.facebook.id;
-        options.profile.picture = Fb.profilePicture(user.services.facebook.accessToken);
+        options.profile.picture = Fb.profilePicture("me", user.services.facebook.accessToken);
         user.profile = options.profile;
     }
     return user;

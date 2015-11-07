@@ -8,3 +8,13 @@
   top: 36%;
   right: 5%;
 }
+
+.createGame .item-avatar {
+  padding-left: 90px;
+}
+
+.createGame .item-avatar > img:first-child {
+  max-width: none;
+  width: initial;
+  border-radius: 25%;
+}

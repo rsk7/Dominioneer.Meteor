@@ -1,9 +1,15 @@
 var userFriends = new Mongo.Collection(null);
 
-var hasSelections = function() {
+var selectedUserIds = function() {
   return userFriends.find({
     "selected": true
-  }).fetch().length;
+  }).fetch().map(function(uf) {
+    return uf.userId;
+  });
+};
+
+var hasSelections = function() {
+  return selectedUserIds().length;
 };
 
 Template.createGame.onRendered(function() {
@@ -29,11 +35,12 @@ Template.createGame.events({
   },
 
   "click #create": function(e) {
-    if(hasSelections()) {
-      console.log("has selections");
-    } else {
-      console.log("missing selections");
-    }
+    var selected = selectedUserIds();
+    selected.push(Meteor.user().profile.userId);
+    Meteor.call("game", selected, function(err, data) {
+      if (err) console.log(err);
+      else console.log(data);
+    });
   }
 });
 
