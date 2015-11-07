@@ -1,14 +1,12 @@
 Meteor.startup(function() {
-    var fbConfig = JSON.parse(Assets.getText(".creds/facebook.json"));
-
     ServiceConfiguration.configurations.remove({
         service: "facebook"
     });
 
     ServiceConfiguration.configurations.insert({
         service: "facebook",
-        appId: fbConfig.AppId,
-        secret: fbConfig.Secret,
+        appId: Meteor.settings.facebook.AppId,
+        secret: Meteor.settings.facebook.Secret,
         requestPermissions: ['user_friends']
     });
 });
