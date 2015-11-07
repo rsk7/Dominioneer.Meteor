@@ -1,6 +1,7 @@
 var generateRandomGame = function() {
-  Dominioneer.randGame(function(data) {
-    Session.set("game", data);
+  Meteor.call("randGame", function(err, data) {
+    if (err) console.log(err);
+    else Session.set("game", data);
   });
 };
 
