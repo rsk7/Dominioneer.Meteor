@@ -15,7 +15,6 @@ Accounts.onCreateUser(function(options, user) {
     if(options.profile) {
         options.profile.userId = user.services.facebook.id;
         options.profile.picture = Fb.profilePicture(user.services.facebook.accessToken);
-        options.profile.username = user.services.facebook.username;
         user.profile = options.profile;
     }
     return user;

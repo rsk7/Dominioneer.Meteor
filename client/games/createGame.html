@@ -13,16 +13,24 @@
         <button class="button button-positive button-block" id="create">
            Create Game
         </button>
-        <div class="list list-inset">
-          <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" placeholder="Find friends">
-          </label>
+
+        <div class="card text-center padding">
+          {{#if friendsSelected}}
+            {{selectedFriends}}
+          {{else}}
+            <span class="message"> Select some friends to create a game with </span>
+          {{/if}}
         </div>
 
         <div class="list list-inset">
+          <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" id="findFriends" placeholder="Find friends"/>
+          </label>
+        </div>
+        <div class="list list-inset">
           {{#each friends}}
-            {{> friend}}
+            {{> friend }}
           {{/each}}
         </div>
       </div>
@@ -34,5 +42,8 @@
   <a class="item item-avatar" href="#">
     <img src="{{profilePic}}"/>
     <h2>{{name}}</h2>
+    {{#if selected}}
+      <i class="ion-checkmark-circled"></i>
+    {{/if}}
   </a>
 </template>

@@ -21,7 +21,8 @@ Meteor.methods({
     return Fb.friends().data.map(function(f) {
       return {
         name: f.name,
-        profilePic: Fb.profilePicture(f.user_id)
+        userId: f.id,
+        profilePic: Fb.profilePicture(f.id)
       };
     });
   }
