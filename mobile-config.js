@@ -7,7 +7,7 @@ App.configurePlugin('com.phonegap.plugins.facebookconnect', {
 });
 
 App.info({
-  id: "com.meteor.dominioneer"
+  id: "com.meteor.dominioneer",
   name: "Dominioneer",
   description: "Dominioneer"
 });

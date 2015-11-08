@@ -3,6 +3,11 @@ Fb = {
     return Meteor.user().services.facebook.accessToken;
   },
 
+  userInfo: function(accessToken) {
+    var url = "https://graph.facebook.com/v2.3/me";
+    return HTTP.get(url, { params: { access_token: accessToken }}).data;
+  },
+
   profilePicture: function(user_id, accessToken) {
     var user_id = user_id || "me";
     var url = "https://graph.facebook.com/v2.3/{0}/picture/?redirect=false&type=large"

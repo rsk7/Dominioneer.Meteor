@@ -20,3 +20,22 @@ Accounts.onCreateUser(function(options, user) {
     return user;
 });
 
+Accounts.registerLoginHandler(function(loginRequest) {
+    if(!loginRequest.fbc) {
+        return undefined;
+    }
+
+    var authResponse = loginRequest.authResponse;
+    var identity = Fb.userInfo(authResponse.accessToken);
+
+    var serviceData = {
+        accessToken: authResponse.accessToken,
+        expiresAt: (+new Date) + (1000 * loginRequest.expiresIn)
+    };
+
+    _.extend(serviceData, identity);
+    var options = { profile: identity };
+
+    return Accounts.updateOrCreateUserFromExternalService("facebook", serviceData, options);
+});
+
