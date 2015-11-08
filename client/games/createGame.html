@@ -10,38 +10,39 @@
   {{#ionView}}
     {{#ionContent}}
       <div class="padded-content createGame">
-
-        <div class="text-center">
-          <ul id="card-list"  class="text-left">
-            {{#each cards}}
-              {{> card}}
-            {{/each}}
-          </ul>
-        </div>
-      
-        <button class="button button-positive button-block" id="create">
+        <button class="button button-positive {{buttonState}} button-block" id="create">
            Create Game
         </button>
 
-        <div class="card text-center padding">
-          {{#if friendsSelected}}
-            {{selectedFriends}}
-          {{else}}
-            <span class="message"> Select some friends to create a game with </span>
+        {{#if showFriends}} 
+          {{#if cards}} 
+            <button class="button button-assertive button-outline button-block" id="cancel">
+              Cancel
+            </button>
           {{/if}}
-        </div>
+          <div class="card text-center padding">
+            {{#if friendsSelected}}
+              {{selectedFriends}}
+            {{else}}
+              <span class="message"> Select some friends to create a game with </span>
+            {{/if}}
+          </div>
 
-        <div class="list list-inset">
-          <label class="item item-input">
-            <i class="icon ion-search placeholder-icon"></i>
-            <input type="text" id="findFriends" placeholder="Find friends"/>
-          </label>
-        </div>
-        <div class="list list-inset">
-          {{#each friends}}
-            {{> friend }}
-          {{/each}}
-        </div>
+          <div class="list list-inset">
+            <label class="item item-input">
+              <i class="icon ion-search placeholder-icon"></i>
+              <input type="text" id="findFriends" placeholder="Find friends"/>
+            </label>
+          </div>
+          <div class="list list-inset">
+            {{#each friends}}
+              {{> friend }}
+            {{/each}}
+          </div>
+        {{/if}}
+      </div>
+      <div class="text-center">
+        {{> cardList cards=cards}}
       </div>
     {{/ionContent}}
   {{/ionView}}

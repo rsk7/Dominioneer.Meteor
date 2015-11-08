@@ -1,0 +1,31 @@
+<template name="cardList">
+  <ul id="card-list" class="text-left">
+    {{#each cards}}
+      {{> card}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="card">
+  <li>
+    <ul>
+      <li class="list-group-item list-group-item-info">
+        <b>{{name}}</b>
+      </li>
+      <li class="list-group-item">
+        Type
+        {{#each type}}
+            <span class="badge">{{this}}</span>
+        {{/each}}
+      </li>
+      <li class="list-group-item">
+        Cost
+        <span class="badge">{{cost}}</span>
+      </li>
+      <li class="list-group-item">
+        Set
+        <span class="badge">{{set}}</span>
+      </li>
+    </ul>
+  </li>
+</template>

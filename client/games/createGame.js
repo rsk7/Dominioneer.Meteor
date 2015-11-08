@@ -27,6 +27,7 @@ Template.createGame.onRendered(function() {
 
 Template.createGame.created = function() {
   this.filterTerm = new ReactiveVar("");
+  this.showFriends = new ReactiveVar(true);
 };
 
 Template.createGame.events({
@@ -35,19 +36,34 @@ Template.createGame.events({
     template.filterTerm.set(value);
   },
 
-  "click #create": function(e) {
-    var selected = selectedUserIds();
-    selected.push(Meteor.user().profile.userId);
-    e.target.innerHTML = "Creating game ...";
-    Meteor.call("game", selected, function(err, data) {
-      if (err) console.log(err);
-      else Session.set("createdGame", data);
-      e.target.innerHTML = "Create game";
-    });
+  "click #create": function(e, template) {
+    if(template.showFriends.get()) {
+      var selected = selectedUserIds(); selected.push(Meteor.user().profile.userId); e.target.innerHTML = "Creating game ...";
+      Meteor.call("game", selected, function(err, data) {
+        if (err) {
+          console.log(err);
+        } else {
+          Session.set("createdGame", data);
+          template.showFriends.set(false);
+        }
+        e.target.innerHTML = "Create game";
+      });
+    } else {
+      template.showFriends.set(true);
+    }
+  },
+
+  "click #cancel": function(e, template) {
+    template.showFriends.set(false);
   }
 });
 
 Template.createGame.helpers({
+  buttonState: function() {
+    return Template.instance().showFriends.get() ?
+      "": "button-outline";
+  },
+
   friends: function() {
     var filterTerm = Template.instance().filterTerm.get();
     return userFriends.find({
@@ -64,16 +80,23 @@ Template.createGame.helpers({
       "selected": true
     }).fetch();
 
-    var createGameWithString = "with ";
-    selected.forEach(function(s) {
-      createGameWithString += s.name + ",";
-    });
+    var createGameWithString = "with " +
+      selected.map(function(s) {
+        return s.name;
+      }).join(",");
 
-    return createGameWithString.slice(0, -1);
+    return createGameWithString;
   },
 
   cards: function() {
-    return Session.get("createdGame").cards;
+    var createdGame = Session.get("createdGame");
+    if (createdGame) {
+      return createdGame.cards;
+    }
+  },
+
+  showFriends: function() {
+    return Template.instance().showFriends.get();
   }
 });
 
