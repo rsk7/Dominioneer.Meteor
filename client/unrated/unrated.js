@@ -51,19 +51,21 @@ Template.unratedGame.events({
 
   "click .rating": function(e, template) {
     e.stopPropagation();
-    var rating = e.target.value;
-    var gameId = template.data.gameId;
-    $(e.target).removeClass("button-outline");
-    template.updatingRating.set(true);
-    Meteor.call("rateGame", gameId, rating, function(error, response) {
-      if (error) {
-        console.log(error);
-        $(e.target).addClass("button-outline");
-      } else {
-        games.update({gameId: gameId}, {rating: response.rating});
-      }
-      template.updatingRating.set(false);
-    });
+    if (!template.updatingRating.get()) {
+      var rating = e.target.value;
+      var gameId = template.data.gameId;
+      $(e.target).removeClass("button-outline");
+      template.updatingRating.set(true);
+      Meteor.call("rateGame", gameId, rating, function(error, response) {
+        if (error) {
+          console.log(error);
+          $(e.target).addClass("button-outline");
+        } else {
+          games.update({gameId: gameId}, {rating: response.rating});
+        }
+        template.updatingRating.set(false);
+      });
+    }
   }
 });
 

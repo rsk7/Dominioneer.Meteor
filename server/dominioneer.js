@@ -45,15 +45,11 @@ Meteor.methods({
 
   // this does not work yet
   rateGame: function(gameId, rating) {
-    var options = _.extend({
-      data: {
-        gameId: gameId,
-        rating: rating
-      }
-    }, headers());
+    var options = headers();
+    options.headers["Content-type"] = "application/json";
     var requestUrl = url + "ratings/" + gameId + "/rating/" + rating;
-    console.log(requestUrl);
-    console.log(Fb.accessToken());
+    // console.log(requestUrl);
+    // console.log(Fb.accessToken());
     return HTTP.put(requestUrl, options).data;
   }
 });
