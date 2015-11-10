@@ -1,33 +1,40 @@
 var userFriends = new Mongo.Collection(null);
 
 var selectedUserIds = function() {
-  return userFriends.find({
+  var selectedIds = userFriends.find({
     "selected": true
   }).fetch().map(function(uf) {
     return uf.userId;
   });
+
+  // add current user to the list
+  selectedIds.push(Meteor.user().profile.userId);
+
+  return selectedIds;
 };
 
 var hasSelections = function() {
-  return selectedUserIds().length;
+  return selectedUserIds().length > 1;
 };
 
 Template.createGame.onRendered(function() {
-  userFriends.remove({});
+  Session.set("loadingFriends", true);
   Meteor.call("getFriends", function(err, response) {
     if (err) {
       console.log(err)
     } else {
       response.forEach(function(userFriend) {
-        userFriends.insert(userFriend);
+        userFriends.update(userFriend, userFriend, {upsert: true});
       });
     }
+    Session.set("loadingFriends", false);
   });
 });
 
 Template.createGame.created = function() {
   this.filterTerm = new ReactiveVar("");
   this.showFriends = new ReactiveVar(true);
+  this.createdGame = new ReactiveVar();
 };
 
 Template.createGame.events({
@@ -38,12 +45,13 @@ Template.createGame.events({
 
   "click #create": function(e, template) {
     if(template.showFriends.get()) {
-      var selected = selectedUserIds(); selected.push(Meteor.user().profile.userId); e.target.innerHTML = "Creating game ...";
+      var selected = selectedUserIds(); 
+      e.target.innerHTML = "Creating game ...";
       Meteor.call("game", selected, function(err, data) {
         if (err) {
           console.log(err);
         } else {
-          Session.set("createdGame", data);
+          template.createdGame.set(data);
           template.showFriends.set(false);
         }
         e.target.innerHTML = "Create game";
@@ -59,9 +67,8 @@ Template.createGame.events({
 });
 
 Template.createGame.helpers({
-  buttonState: function() {
-    return Template.instance().showFriends.get() ?
-      "": "button-outline";
+  loadingFriends: function() {
+    return Session.get("loadingFriends");
   },
 
   friends: function() {
@@ -75,7 +82,7 @@ Template.createGame.helpers({
     return hasSelections();
   },
 
-  selectedFriends: function() {
+  createGameWithString: function() {
     var selected = userFriends.find({
       "selected": true
     }).fetch();
@@ -88,11 +95,12 @@ Template.createGame.helpers({
     return createGameWithString;
   },
 
-  cards: function() {
-    var createdGame = Session.get("createdGame");
-    if (createdGame) {
-      return createdGame.cards;
-    }
+  selectedUserIds: function() {
+    return selectedUserIds();
+  },
+
+  game: function() {
+    return Template.instance().createdGame.get();
   },
 
   showFriends: function() {
@@ -107,4 +115,5 @@ Template.friend.events({
     });
   }
 });
+
 

@@ -10,39 +10,44 @@
   {{#ionView}}
     {{#ionContent}}
       <div class="padded-content createGame">
-        <button class="button button-positive {{buttonState}} button-block" id="create">
-           Create Game
-        </button>
+        <div class="create">
+          <button class="button button-positive button-block" id="create">
+             Create game
+          </button>
 
-        {{#if showFriends}} 
-          {{#if cards}} 
-            <button class="button button-assertive button-outline button-block" id="cancel">
-              Cancel
-            </button>
-          {{/if}}
-          <div class="card text-center padding">
-            {{#if friendsSelected}}
-              {{selectedFriends}}
-            {{else}}
-              <span class="message"> Select friends to create a game </span>
+          {{#if showFriends}} 
+            {{#if game}} 
+              <button class="list-inset button button-assertive button-outline button-block" id="cancel">
+                Cancel
+              </button>
             {{/if}}
-          </div>
+            <div class="card text-center padding">
+              {{#if friendsSelected}}
+                {{createGameWithString}}
+              {{else}}
+                <span class="message"> Select friends to create a game </span>
+              {{/if}}
+            </div>
 
-          <div class="list list-inset">
-            <label class="item item-input">
-              <i class="icon ion-search placeholder-icon"></i>
-              <input type="text" id="findFriends" placeholder="Find friends"/>
-            </label>
-          </div>
-          <div class="list list-inset">
-            {{#each friends}}
-              {{> friend }}
-            {{/each}}
-          </div>
+            <div class="list list-inset">
+              <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" id="findFriends" placeholder="Find friends"/>
+              </label>
+            </div>
+            <div class="list list-inset">
+              {{#if loadingFriends}}
+                Loading friends list...
+              {{/if}}
+              {{#each friends}}
+                {{> friend }}
+              {{/each}}
+            </div>
+          {{/if}}
+        </div>
+        {{#if game}}
+          {{> playGame game=game userIds=selectedUserIds}}
         {{/if}}
-      </div>
-      <div class="text-center">
-        {{> cardList cards=cards}}
       </div>
     {{/ionContent}}
   {{/ionView}}
@@ -57,3 +62,4 @@
     {{/if}}
   </a>
 </template>
+

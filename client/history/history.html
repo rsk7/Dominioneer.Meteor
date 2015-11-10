@@ -9,7 +9,20 @@
 
   {{#ionView}}
     {{#ionContent}}
-    	<span>History</span>
+      <div class="padded-content">
+        {{#if loading}}
+          Refreshing games ...
+        {{/if}}
+        {{#ionList}}
+          {{#each gameHistory}}
+            {{#ionItem}}
+              <h2>{{gameId}}</h2>
+              <p>{{userId}}</p>
+            {{/ionItem}}
+          {{/each}}
+        {{/ionList}}
+      </div>
     {{/ionContent}}
   {{/ionView}}
 </template>
+

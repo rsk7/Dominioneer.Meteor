@@ -1,0 +1,9 @@
+<template name="playGame">
+  <div class="text-center">
+    <button class="button button-balanced button-block" id="playGame">
+      Play Game
+    </button>
+    <h3> Game ID: {{game.id}} </h3>
+    {{> cardList cards=game.cards}}
+  </div>
+</template>
