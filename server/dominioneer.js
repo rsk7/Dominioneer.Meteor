@@ -43,6 +43,7 @@ Meteor.methods({
     });
   },
 
+  // this does not work yet
   rateGame: function(gameId, rating) {
     var options = _.extend({
       data: {
