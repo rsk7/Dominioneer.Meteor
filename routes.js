@@ -19,4 +19,8 @@ Router.route("/unrated", {
   }
 });
 
-Router.route("/settings");
+Router.route("/settings", {
+  subscriptions: function() {
+    return [ Meteor.subscribe("currentUserGames") ];
+  }
+});

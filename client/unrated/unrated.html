@@ -10,13 +10,18 @@
   {{#ionView}}
     {{#ionContent}}
       <div class="padded-content unrated-games">
-        {{#each unratedGames}}
-          <div class="card">
-            <p>ID: {{_id}}</p>
-            {{> cardList summary=true cards=cards}}
-            {{> rateGame allowRating=true gameId=_id}}
-          </div>
-        {{/each}}
+        {{#unless hasUnratedGames}}
+          <p>You don't have any unrated games</p>
+          <a href="{{pathFor 'history'}}">Go to history</a>
+        {{else}}
+          {{#each unratedGames}}
+            <div class="card">
+              <p>ID: {{_id}}</p>
+              {{> cardList summary=true cards=cards}}
+              {{> rateGame allowRating=true gameId=_id}}
+            </div>
+          {{/each}}
+        {{/unless}}
       </div>
     {{/ionContent}}
   {{/ionView}}

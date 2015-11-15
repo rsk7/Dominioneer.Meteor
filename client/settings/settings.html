@@ -10,44 +10,14 @@
   {{#ionView}}
     {{#ionContent}}
       {{> login}} 
-      <div class="card">
-        <div class="item item-divider">
-          I'm a Header in a Card!
+      <div class="list card">
+        <div class="item">
+          Games played: {{numberOfGamesPlayed}}
         </div>
-        <div class="item item-text-wrap">
-          This is a basic Card with some text.
-        </div>
-        <div class="item item-divider">
-          I'm a Footer in a Card!
+        <div class="item">
+          Games rated: {{numberOfGamesRated}}
         </div>
       </div>
-      {{> cardExample}}
     {{/ionContent}}
   {{/ionView}}
-</template>
-
-<template name="cardExample">
-      <div class="list card">
-
-        <a href="#" class="item item-icon-left">
-          <i class="icon ion-home"></i>
-          Enter home address
-        </a>
-
-        <a href="#" class="item item-icon-left">
-          <i class="icon ion-ios-telephone"></i>
-          Enter phone number
-        </a>
-
-        <a href="#" class="item item-icon-left">
-          <i class="icon ion-wifi"></i>
-          Enter wireless password
-        </a>
-
-        <a href="#" class="item item-icon-left">
-          <i class="icon ion-card"></i>
-          Enter card information
-        </a>
-
-      </div>
 </template>

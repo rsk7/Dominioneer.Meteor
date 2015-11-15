@@ -1,9 +1,12 @@
-Meteor.publish("currentUserGames", function() {
-  var currentUserGames = Ratings.find({ userId: this.userId }).fetch();
-
-  var gameIds = currentUserGames.map(function(cug) {
+var getUserGameIds = function(userId) {
+  var currentUserGames = Ratings.find({ userId: userId }).fetch();
+  return currentUserGames.map(function(cug) {
     return cug.gameId;
   });
+};
+
+Meteor.publish("currentUserGames", function() {
+  var gameIds = getUserGameIds(this.userId);
 
   if (gameIds) {
     return [
@@ -14,3 +17,4 @@ Meteor.publish("currentUserGames", function() {
     this.ready();
   }
 });
+  
