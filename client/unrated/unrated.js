@@ -1,71 +1,13 @@
-var games = new Mongo.Collection(null);
-
-Template.unrated.onRendered(function() {
-  Session.set("loadingUnratedGames", true);
-  Meteor.call("getUnratedGames", function(err, response) {
-    if (err) {
-      console.log(err);
-    } else {
-      response.forEach(function(unratedGame) {
-        games.upsert(unratedGame, unratedGame, {upsert: true});
-      });
-    }
-    Session.set("loadingUnratedGames", false);
-  });
-});
-
 Template.unrated.helpers({
-  loading: function() {
-    return Session.get("loadingUnratedGames");
-  },
-
   unratedGames: function() {
     // only get games with no ratings
-    return games.find({ ratings: {"$exists" : false}});
-  }
-});
+    var ratings = Ratings.find({ rating: { "$exists": false }});
 
-Template.unratedGame.created = function() {
-  this.showRatingForm = new ReactiveVar(false);
-  this.updatingRating = new ReactiveVar(false);
-};
+    var ratedGameIds = ratings.map(function(r) {
+      return r.gameId;
+    });
 
-Template.unratedGame.helpers({
-  showRatingForm: function() {
-    return Template.instance().showRatingForm.get();
-  },
-
-  ratingValues: function() {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  },
-
-  updatingRating: function() {
-    return Template.instance().updatingRating.get();  
-  }
-});
-
-Template.unratedGame.events({
-  "click .game-item": function(e, template) {
-    template.showRatingForm.set(!template.showRatingForm.get());
-  },
-
-  "click .rating": function(e, template) {
-    e.stopPropagation();
-    if (!template.updatingRating.get()) {
-      var rating = e.target.value;
-      var gameId = template.data.gameId;
-      $(e.target).removeClass("button-outline");
-      template.updatingRating.set(true);
-      Meteor.call("rateGame", gameId, rating, function(error, response) {
-        if (error) {
-          console.log(error);
-          $(e.target).addClass("button-outline");
-        } else {
-          games.update({gameId: gameId}, {rating: response.rating});
-        }
-        template.updatingRating.set(false);
-      });
-    }
+    return Games.find({ _id : { "$in" : ratedGameIds }});
   }
 });
 

@@ -9,38 +9,15 @@
 
   {{#ionView}}
     {{#ionContent}}
-      <div class="padded-content">
-        {{#if loading}}
-          Refreshing games ...
-        {{/if}}
-        {{#ionList}}
-          {{#each unratedGames}}
-            {{#ionItem}}
-              {{> unratedGame}}
-            {{/ionItem}}
-          {{/each}}
-        {{/ionList}}
+      <div class="padded-content unrated-games">
+        {{#each unratedGames}}
+          <div class="card">
+            <p>ID: {{_id}}</p>
+            {{> cardList summary=true cards=cards}}
+            {{> rateGame allowRating=true gameId=_id}}
+          </div>
+        {{/each}}
       </div>
     {{/ionContent}}
   {{/ionView}}
-</template>
-
-<template name="unratedGame">
-  <div class="game-item">
-    <h2>{{gameId}}</h2>
-    <p>{{userId}}</p>
-    {{#if showRatingForm}}
-      <p>
-        Rate:
-        {{#if updatingRating}}
-          (Updating ...)
-        {{/if}}
-      </p>
-      {{#each ratingValues}}
-        <button class="rating button button-small button-positive button-outline" value="{{this}}">
-          {{this}}
-        </button>
-      {{/each}}
-    {{/if}}
-  </div>
 </template>

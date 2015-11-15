@@ -9,18 +9,14 @@
 
   {{#ionView}}
     {{#ionContent}}
-      <div class="padded-content">
-        {{#if loading}}
-          Refreshing games ...
-        {{/if}}
-        {{#ionList}}
-          {{#each gameHistory}}
-            {{#ionItem}}
-              <h2>{{gameId}}</h2>
-              <p>{{userId}}</p>
-            {{/ionItem}}
-          {{/each}}
-        {{/ionList}}
+      <div class="padded-content history">
+        {{#each gameHistory}}
+          <div class="card">
+            <p>ID: {{_id}}</p>
+            {{> cardList cards=cards summary=true}}
+            {{> rateGame allowRating=false gameId=_id}}
+          </div>
+        {{/each}}
       </div>
     {{/ionContent}}
   {{/ionView}}

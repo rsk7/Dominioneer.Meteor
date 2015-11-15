@@ -1,0 +1,21 @@
+<template name="rateGame">
+  <div class="rate">
+    <p>
+      {{#if hasRating}}
+        Rating:
+      {{else}}
+        Rate:
+      {{/if}}
+      {{#if updatingRating}}
+        (Updating ...)
+      {{/if}}
+    </p>
+    {{#each ratingValues}}
+      <button class="rating button button-small button-positive {{#unless selected}}button-outline{{/unless}}" value="{{this.value}}">
+        {{this.name}}
+      </button>
+    {{/each}}
+  </div>
+</template>
+
+

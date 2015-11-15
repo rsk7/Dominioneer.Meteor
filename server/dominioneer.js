@@ -3,9 +3,23 @@ var url = "http://dominioneer.elasticbeanstalk.com/";
 var headers = function() {
   return {
     headers: {
-      "Authorization": "Bearer " + Fb.accessToken()
+      "Authorization": "Bearer " + Fb.accessToken(),
+      "Content-type": "application/json"
     }
   };
+};
+
+var store = function(gameId) {
+  var game = HTTP.get(url + "games/" + gameId, headers()).data;
+  game._id = game.id;
+  delete game.id;
+  Games.insert(game);
+  Ratings.insert({ userId: Meteor.userId(), gameId: game._id });
+};
+
+var rate = function(gameId, ratingValue) {
+  var userRating = { gameId: gameId, userId: Meteor.userId() };
+  Ratings.update(userRating, { "$set" : { rating: ratingValue }});
 };
 
 Meteor.methods({
@@ -19,6 +33,7 @@ Meteor.methods({
         players: userIds.join(",")
       }
     }, headers());
+
     return HTTP.get(url + "games", options).data;
   },
 
@@ -28,7 +43,10 @@ Meteor.methods({
         players: userIds.join(",")
       }
     }, headers());
-    return HTTP.put(url + "games/" + gameId, options).data;
+
+    var gameId = HTTP.put(url + "games/" + gameId, options).data.id;
+    store(gameId);
+    return gameId;
   },
 
   getHistory: function() {
@@ -43,14 +61,10 @@ Meteor.methods({
     });
   },
 
-  // this does not work yet
   rateGame: function(gameId, rating) {
-    var options = headers();
-    options.headers["Content-type"] = "application/json";
     var requestUrl = url + "ratings/" + gameId + "/rating/" + rating;
-    // console.log(requestUrl);
-    // console.log(Fb.accessToken());
-    return HTTP.put(requestUrl, options).data;
+    var submittedRating = HTTP.put(requestUrl, headers()).data.rating;
+    rate(gameId, submittedRating);
   }
 });
 

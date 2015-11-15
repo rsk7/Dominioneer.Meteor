@@ -1,9 +1,17 @@
 <template name="cardList">
-  <ul id="card-list" class="text-left">
-    {{#each cards}}
-      {{> card}}
-    {{/each}}
-  </ul>
+  <div class="cards {{#if summary}}summary{{/if}}">
+    <ul class="card-list text-left">
+      {{#each cards}}
+        {{#if ../summary}}
+          <button class="button button-small">
+            {{name}}
+          </button>
+        {{else}}
+          {{> card}}
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="card">

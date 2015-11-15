@@ -1,0 +1,33 @@
+.cards.summary {
+  white-space: initial;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.summary ul.card-list {
+  width: initial;
+}
+
+ul.card-list {
+  list-style: none;
+  width: 315px;
+  display: inline-block;
+  margin: auto;
+
+  .button-small {
+    margin-bottom: 4px;
+  }
+
+  li {
+    width: 315px;
+    margin: auto;
+  }
+
+  ul {
+    margin: 20px 0px 20px 0px;
+  }
+}
+
+.padded-content {
+  padding: 30px;
+}
